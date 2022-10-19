@@ -11,7 +11,7 @@ jobs:
         uses: ./
         id: deployment_notification
         with:
-          webhook: ${{ secrets.SACK_WEBHOOK}}
+          webhook: ${{ secrets.SLACK_WEBHOOK}}
           service_name: Example Service
           action: Finished
           region: us-east-1
