@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Notify deploy is finished
         uses: ./
-        id: Deployment notification
+        id: deployment_notification
         with:
           webhook: ${{ secrets.SACK_WEBHOOK}}
           service: Example Service
