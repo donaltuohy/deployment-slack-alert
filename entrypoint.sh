@@ -28,7 +28,7 @@ JSON_STRING=$( jq -n \
                                 "type": "mrkdwn",
                                 "text": $link
                             }
-                        }.
+                        },
                         {
                             "type": "section",
                             "text": {
