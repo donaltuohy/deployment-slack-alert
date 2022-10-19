@@ -1,8 +1,15 @@
-- name: Notify deploy is finished
-  uses: ./
-  id: Deployment notification
-  with:
-    webhook: ${{ secrets.SLACK_WEBHOOK}}
-    service: Example Service
-    action: Finished
-    region: us-east-1
+name: Slack Notification
+
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify deploy is finished
+        uses: ./
+        id: Deployment notification
+        with:
+          webhook: ${{ secrets.SACK_WEBHOOK}}
+          service: Example Service
+          action: Finished
+          region: us-east-1
