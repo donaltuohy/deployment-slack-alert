@@ -5,6 +5,8 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
       - name: Notify deploy is finished
         uses: ./
         id: deployment_notification
