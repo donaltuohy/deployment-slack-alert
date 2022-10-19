@@ -1,0 +1,8 @@
+- name: Notify deploy is finished
+  uses: ./
+  id: Deployment notification
+  with:
+    webhook: ${{ secrets.SLACK_WEBHOOK}}
+    service: Example Service
+    action: Finished
+    region: us-east-1
