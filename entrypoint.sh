@@ -6,10 +6,12 @@ API_URL="${INPUT_WEBHOOK}"
 echo ${API_URL}
 
 DEPLOYMENT_MESSAGE="${INPUT_SERVICE_NAME} Deployment ${INPUT_ACTION} - ${INPUT_REGION}"
+AUTHOR_MSG="Deployment started by ${INPUT_AUTHOR}"
 
 JSON_STRING=$( jq -n \
                   --arg dep_msg "$DEPLOYMENT_MESSAGE" \
-                  --arg link "$INPUT_URL" \
+                  --arg link "$INPUT_RUN_URL" \
+                  --arg author_msg "$AUTHOR_MSG" \
                   '{ 
                     "blocks": [ 
                         { 
@@ -25,6 +27,13 @@ JSON_STRING=$( jq -n \
                             "text": {
                                 "type": "mrkdwn",
                                 "text": $link
+                            }
+                        }.
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": $author_msg
                             }
                         }
                     ]

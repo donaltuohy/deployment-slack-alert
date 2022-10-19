@@ -35,4 +35,4 @@ runs:
     - ${{ inputs.action }}
     - ${{ inputs.region }}
     - ${{ inputs.author }}
-    - ${{ inputs.url }}
+    - ${{ inputs.run_url }}
