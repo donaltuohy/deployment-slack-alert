@@ -1,13 +1,31 @@
 #!/bin/bash
 set -e
 
-api_url="${INPUT_WEBHOOK}"
+API_URL="${INPUT_WEBHOOK}"
 
-body=$(cat <<EOF
-'{"blocks": [{"type": "header","text": {"type": "plain_text","text": "${INPUT_SERVICE_NAME} Deployment ${INPUT_ACTION} - ${INPUT_REGION}","emoji": true}},{"type": "section","text": {"type": "mrkdwn","text": "*REGION:* ${INPUT_REGION}"}}]}'
-EOF
-)
+DEPLOYMENT_MESSAGE="${INPUT_SERVICE_NAME} Deployment ${INPUT_ACTION} - ${INPUT_REGION}"
 
-result=$(curl -X POST "${api_url}" -d ${body}
+JSON_STRING=$( jq -n \
+                  --arg dep_msg "$DEPLOYMENT_MESSAGE" \
+                  '{ 
+                    "blocks": [ 
+                        { 
+                            "type": "header",
+                            "text": {
+                                "type": "plain_text",
+                                "text": $dep_msg,
+                                "emoji": true
+                            }
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*Details:* To do: add links here"
+                            }
+                        }
+                    ]
+                }'
+            )
 
-echo "::set-output name=pokemon_name::$pokemon_name"
+result=$(curl -X POST "${API_URL}" -d "${JSON_STRING}"
