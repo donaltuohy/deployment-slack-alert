@@ -14,6 +14,14 @@ inputs:
   region:
     description: 'url of the slack app'
     required: true
+  author:
+    description: 'person who shall be linked to the run'
+    required: false
+    default: ${{ github.actor}}
+  run_url:
+    description: 'url of the run'
+    required: false
+    default: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
 outputs:
   result:
@@ -26,3 +34,5 @@ runs:
     - ${{ inputs.service_name }}
     - ${{ inputs.action }}
     - ${{ inputs.region }}
+    - ${{ inputs.author }}
+    - ${{ inputs.url }}

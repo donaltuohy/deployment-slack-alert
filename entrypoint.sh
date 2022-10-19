@@ -9,6 +9,7 @@ DEPLOYMENT_MESSAGE="${INPUT_SERVICE_NAME} Deployment ${INPUT_ACTION} - ${INPUT_R
 
 JSON_STRING=$( jq -n \
                   --arg dep_msg "$DEPLOYMENT_MESSAGE" \
+                  --arg link "$INPUT_URL" \
                   '{ 
                     "blocks": [ 
                         { 
@@ -23,7 +24,7 @@ JSON_STRING=$( jq -n \
                             "type": "section",
                             "text": {
                                 "type": "mrkdwn",
-                                "text": "*Details:* To do: add links here"
+                                "text": $link
                             }
                         }
                     ]
