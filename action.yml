@@ -1,0 +1,28 @@
+# action.yaml
+name: 'Notify slack of deployment'
+description: 'Send a request to a slack webhook'
+inputs:
+  webhook:
+    description: 'url of the slack app'
+    required: true
+  service_name:
+    description: 'name of service been deployed'
+    required: true
+  action:
+    description: 'url of the slack app'
+    required: true
+  region:
+    description: 'url of the slack app'
+    required: true
+
+outputs:
+  result:
+    description: 'Result of the webhook request'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.webhook}}
+    - ${{ inputs.service_name }}
+    - ${{ inputs.action }}
+    - ${{ inputs.region }}
