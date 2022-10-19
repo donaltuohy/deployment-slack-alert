@@ -28,4 +28,4 @@ JSON_STRING=$( jq -n \
                 }'
             )
 
-curl -X POST "${API_URL}" -H "Content-Type: application/json" --data ${JSON_STRING}
+curl -X POST "${API_URL}" -H "Content-Type: application/json" --data "${JSON_STRING}"
