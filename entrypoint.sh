@@ -3,6 +3,8 @@ set -e
 
 API_URL="${INPUT_WEBHOOK}"
 
+echo ${API_URL}
+
 DEPLOYMENT_MESSAGE="${INPUT_SERVICE_NAME} Deployment ${INPUT_ACTION} - ${INPUT_REGION}"
 
 JSON_STRING=$( jq -n \
