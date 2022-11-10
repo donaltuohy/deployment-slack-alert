@@ -5,15 +5,19 @@ API_URL="${INPUT_WEBHOOK}"
 
 echo ${API_URL}
 
-DEPLOYMENT_MESSAGE="${INPUT_SERVICE_NAME} Deployment ${INPUT_ACTION} - ${INPUT_REGION}"
-AUTHOR_MSG="Deployment started by ${INPUT_AUTHOR}"
+DEPLOYMENT_MESSAGE=":white_check_mark: ${INPUT_SERVICE_NAME} Deployment ${INPUT_ACTION} - ${INPUT_REGION}"
+AUTHOR_MSG="Deployment initiated by *${INPUT_AUTHOR}*"
+LINK_MESSAGE="[Deployment Action URL](${INPUT_RUN_URL})" 
 
 JSON_STRING=$( jq -n \
                   --arg dep_msg "$DEPLOYMENT_MESSAGE" \
-                  --arg link "$INPUT_RUN_URL" \
+                  --arg link "$LINK_MESSAGE" \
                   --arg author_msg "$AUTHOR_MSG" \
                   '{ 
                     "blocks": [ 
+                        {
+			                "type": "divider"
+		                },
                         { 
                             "type": "header",
                             "text": {
@@ -35,7 +39,10 @@ JSON_STRING=$( jq -n \
                                 "type": "mrkdwn",
                                 "text": $author_msg
                             }
-                        }
+                        },
+                        {
+			                "type": "divider"
+		                }
                     ]
                 }'
             )
