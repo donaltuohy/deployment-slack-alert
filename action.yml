@@ -21,7 +21,7 @@ inputs:
   run_url:
     description: 'url of the run'
     required: false
-    default: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+    default: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
 outputs:
   result:
