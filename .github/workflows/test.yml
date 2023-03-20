@@ -16,14 +16,17 @@ jobs:
         if: always()
 
       - name: Build example image
+        id: build-image
         run: sleep 10s
         shell: bash
       
       - name: Deploy EU West
+        id: deploy-eu-west
         run: sleep 10s
         shell: bash
 
       - name: Deploy US East
+        id: deploy-us-east
         run: sleep 10s
         shell: bash
 
