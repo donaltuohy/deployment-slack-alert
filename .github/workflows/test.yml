@@ -7,11 +7,30 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Notify deploy is finished
-        uses: ./
-        id: deployment_notification
+
+      - uses: act10ns/slack@v1
         with:
-          webhook: ${{ secrets.SLACK_WEBHOOK}}
-          service_name: Example Service
-          action: Finished
-          region: us-east-1
+          status: starting
+          message: Starting Example Deployment...
+          webhook-url: ${{ secrets.SLACK_WEBHOOK }}
+        if: always()
+
+      - name: Build example image
+        run: sleep 10s
+        shell: bash
+      
+      - name: Deploy EU West
+        run: sleep 10s
+        shell: bash
+
+      - name: Deploy US East
+        run: sleep 10s
+        shell: bash
+
+      - uses: act10ns/slack@v1
+        with:
+          message: Example Deployment Finished
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          webhook-url: ${{ secrets.SLACK_WEBHOOK }}
+        if: always()
